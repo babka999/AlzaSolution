@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlzaWebApi", "AlzaWebApi\AlzaWebApi.csproj", "{418F1493-AC3B-4BC7-AAC7-874A456E263B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlzaWebApi", "AlzaWebApi\AlzaWebApi.csproj", "{418F1493-AC3B-4BC7-AAC7-874A456E263B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{EC2A563B-1A9F-4090-9E5A-537C8B293017}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.Data", "Libraries\Alza.Data\Alza.Data.csproj", "{49913BA8-3646-4148-A220-5CC4AE344C05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.Service", "Libraries\Alza.Service\Alza.Service.csproj", "{C3AB1FB1-4FC6-43AC-9FB9-F3D1F17FE32E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +21,21 @@ Global
 		{418F1493-AC3B-4BC7-AAC7-874A456E263B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{418F1493-AC3B-4BC7-AAC7-874A456E263B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{418F1493-AC3B-4BC7-AAC7-874A456E263B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49913BA8-3646-4148-A220-5CC4AE344C05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49913BA8-3646-4148-A220-5CC4AE344C05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49913BA8-3646-4148-A220-5CC4AE344C05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49913BA8-3646-4148-A220-5CC4AE344C05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3AB1FB1-4FC6-43AC-9FB9-F3D1F17FE32E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3AB1FB1-4FC6-43AC-9FB9-F3D1F17FE32E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3AB1FB1-4FC6-43AC-9FB9-F3D1F17FE32E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3AB1FB1-4FC6-43AC-9FB9-F3D1F17FE32E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{49913BA8-3646-4148-A220-5CC4AE344C05} = {EC2A563B-1A9F-4090-9E5A-537C8B293017}
+		{C3AB1FB1-4FC6-43AC-9FB9-F3D1F17FE32E} = {EC2A563B-1A9F-4090-9E5A-537C8B293017}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B01F039B-A858-486E-8A4B-600C785803BD}
