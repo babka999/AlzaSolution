@@ -11,9 +11,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.4" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Domain\" />
-    <Folder Include="Mapping\" />
-  </ItemGroup>
-
 </Project>

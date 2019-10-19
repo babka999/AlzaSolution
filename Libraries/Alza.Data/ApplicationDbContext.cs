@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Alza.Data.Domain.Category;
+using Alza.Data.Extension;
+using Alza.Data.Mapping.Category;
+using Microsoft.EntityFrameworkCore;
 
 namespace Alza.Data
 {
@@ -16,7 +16,7 @@ namespace Alza.Data
         #region Override method
 
         /// <summary>
-        /// Add entities + mapping entities
+        /// Mapping entities
         /// </summary>
         /// <param name="builder"></param>
         protected override void OnModelCreating(ModelBuilder builder)
@@ -24,10 +24,16 @@ namespace Alza.Data
             base.OnModelCreating(builder);
             #region Entities mapping configuration
 
-            //builder.AddConfiguration(new ContractTypeMap());
+            builder.AddConfiguration(new CategoryMap());
 
             #endregion
         }
+
+        #endregion
+
+        #region Adding entities
+
+        public DbSet<CategoryDataModel> Categories { get; set; }
 
         #endregion
     }
