@@ -1,9 +1,9 @@
-﻿using Alza.Data.Domain.Category;
+﻿using Alza.Data.Domain.Catalog;
 using Alza.Data.Extension;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Alza.Data.Mapping.Category
+namespace Alza.Data.Mapping.Catalog
 {
     internal class CategoryMap : DbEntityConfiguration<CategoryDataModel>
     {

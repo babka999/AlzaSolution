@@ -1,4 +1,4 @@
-﻿namespace Alza.Data.Domain.Category
+﻿namespace Alza.Data.Domain.Catalog
 {
     /// <summary>
     /// Represents a category

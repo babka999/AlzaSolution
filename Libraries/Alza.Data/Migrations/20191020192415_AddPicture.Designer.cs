@@ -4,14 +4,16 @@ using Alza.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Alza.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191020192415_AddPicture")]
+    partial class AddPicture
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,24 +61,6 @@ namespace Alza.Data.Migrations
                     b.ToTable("Manufacturer");
                 });
 
-            modelBuilder.Entity("Alza.Data.Domain.Media.PictureBinaryDataModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<byte[]>("BinaryData");
-
-                    b.Property<int>("PictureId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PictureId")
-                        .IsUnique();
-
-                    b.ToTable("PictureBinaryDataModel");
-                });
-
             modelBuilder.Entity("Alza.Data.Domain.Media.PictureDataModel", b =>
                 {
                     b.Property<int>("Id")
@@ -103,14 +87,6 @@ namespace Alza.Data.Migrations
                     b.HasOne("Alza.Data.Domain.Catalog.CategoryDataModel", "ParentCategory")
                         .WithMany()
                         .HasForeignKey("ParentCategoryId");
-                });
-
-            modelBuilder.Entity("Alza.Data.Domain.Media.PictureBinaryDataModel", b =>
-                {
-                    b.HasOne("Alza.Data.Domain.Media.PictureDataModel", "Picture")
-                        .WithOne("PictureBinary")
-                        .HasForeignKey("Alza.Data.Domain.Media.PictureBinaryDataModel", "PictureId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

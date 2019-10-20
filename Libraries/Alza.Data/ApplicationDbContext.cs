@@ -1,6 +1,8 @@
-﻿using Alza.Data.Domain.Category;
+﻿using Alza.Data.Domain.Catalog;
+using Alza.Data.Domain.Media;
 using Alza.Data.Extension;
-using Alza.Data.Mapping.Category;
+using Alza.Data.Mapping.Catalog;
+using Alza.Data.Mapping.Media;
 using Microsoft.EntityFrameworkCore;
 
 namespace Alza.Data
@@ -25,6 +27,9 @@ namespace Alza.Data
             #region Entities mapping configuration
 
             builder.AddConfiguration(new CategoryMap());
+            builder.AddConfiguration(new ManufacturerMap());
+            builder.AddConfiguration(new PictureMap());
+            builder.AddConfiguration(new PictureBinaryMap());
 
             #endregion
         }
@@ -34,6 +39,9 @@ namespace Alza.Data
         #region Adding entities
 
         public DbSet<CategoryDataModel> Categories { get; set; }
+        public DbSet<ManufacturerDataModel> Manufacturers { get; set; }
+        public DbSet<PictureDataModel> Pictures { get; set; }
+        public DbSet<PictureBinaryDataModel> PicturesBinary { get; set; }
 
         #endregion
     }
