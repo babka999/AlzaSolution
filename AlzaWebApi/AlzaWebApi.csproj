@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Libraries\Alza.Data\Alza.Data.csproj" />
-    <ProjectReference Include="..\Libraries\Alza.Service\Alza.Service.csproj" />
+    <ProjectReference Include="..\Libraries\Alza.Service\Alza.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -30,6 +30,8 @@ namespace Alza.Data
             builder.AddConfiguration(new ManufacturerMap());
             builder.AddConfiguration(new PictureMap());
             builder.AddConfiguration(new PictureBinaryMap());
+            builder.AddConfiguration(new ProductMap());
+            builder.AddConfiguration(new ProductCategoryMap());
 
             #endregion
         }
@@ -42,6 +44,8 @@ namespace Alza.Data
         public DbSet<ManufacturerDataModel> Manufacturers { get; set; }
         public DbSet<PictureDataModel> Pictures { get; set; }
         public DbSet<PictureBinaryDataModel> PicturesBinary { get; set; }
+        public DbSet<ProductDataModel> Products { get; set; }
+        public DbSet<ProductCategoryDataModel> ProductCategories { get; set; }
 
         #endregion
     }

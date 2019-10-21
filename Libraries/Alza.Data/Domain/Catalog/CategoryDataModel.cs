@@ -1,4 +1,6 @@
-﻿namespace Alza.Data.Domain.Catalog
+﻿using System.Collections.Generic;
+
+namespace Alza.Data.Domain.Catalog
 {
     /// <summary>
     /// Represents a category
@@ -24,5 +26,10 @@
         /// Gets or sets the parent category
         /// </summary>
         public virtual CategoryDataModel ParentCategory { get; set; }
+
+        /// <summary>
+        /// Gets or sets the collection of ProductCategory
+        /// </summary>
+        public virtual ICollection<ProductCategoryDataModel> CategoryProducts { get; set; }
     }
 }

@@ -4,14 +4,16 @@ using Alza.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Alza.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191021115349_AddProduct")]
+    partial class AddProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,25 +59,6 @@ namespace Alza.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Manufacturer");
-                });
-
-            modelBuilder.Entity("Alza.Data.Domain.Catalog.ProductCategoryDataModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CategoryId");
-
-                    b.Property<int>("ProductId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Product_Category_Mapping");
                 });
 
             modelBuilder.Entity("Alza.Data.Domain.Catalog.ProductDataModel", b =>
@@ -150,19 +133,6 @@ namespace Alza.Data.Migrations
                     b.HasOne("Alza.Data.Domain.Catalog.CategoryDataModel", "ParentCategory")
                         .WithMany()
                         .HasForeignKey("ParentCategoryId");
-                });
-
-            modelBuilder.Entity("Alza.Data.Domain.Catalog.ProductCategoryDataModel", b =>
-                {
-                    b.HasOne("Alza.Data.Domain.Catalog.CategoryDataModel", "Category")
-                        .WithMany("CategoryProducts")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Alza.Data.Domain.Catalog.ProductDataModel", "Product")
-                        .WithMany("ProductCategories")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Alza.Data.Domain.Catalog.ProductDataModel", b =>

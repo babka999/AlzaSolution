@@ -1,11 +1,14 @@
 ﻿using Alza.Data;
-using Alza.Data.InitialData;
+using Alza.Services;
+using Alza.Services.Catalog;
+using Alza.Services.InitialData;
+using Alza.Services.Media;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Alza.Service
+namespace AlzaWebApi
 {
     /// <summary>
-    /// Service registration class.
+    /// Dependency registrar
     /// </summary>
     public static class DependencyRegistrar
     {
@@ -17,12 +20,18 @@ namespace Alza.Service
         {
             #region Transient
 
-            services.AddTransient<Initializer>();
+            services.AddTransient<InitialDataService>();
+
             #endregion
 
             #region Scoped
 
             services.AddScoped<IDbContext, ApplicationDbContext>();
+            services.AddScoped<ICommonService, CommonService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IManufacturerService, ManufacturerService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IPictureService, PictureService>();
 
             #endregion
         }

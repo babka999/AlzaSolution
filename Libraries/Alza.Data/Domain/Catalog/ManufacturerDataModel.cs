@@ -1,4 +1,6 @@
-﻿namespace Alza.Data.Domain.Catalog
+﻿using System.Collections.Generic;
+
+namespace Alza.Data.Domain.Catalog
 {
     /// <summary>
     /// Represents a manufacturer
@@ -10,10 +12,14 @@
         /// </summary>
         public string Name { get; set; }
 
-
         /// <summary>
         /// Gets or sets the description
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or sets the products
+        /// </summary>
+        public virtual ICollection<ProductDataModel> Products { get; set; }
     }
 }

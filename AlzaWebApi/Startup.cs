@@ -1,6 +1,7 @@
 ﻿using Alza.Data;
 using Alza.Data.InitialData;
-using Alza.Service;
+using Alza.Services;
+using Alza.Services.InitialData;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -87,7 +88,7 @@ namespace AlzaWebApi
         /// <param name="env"></param>
         /// <param name="initializer"></param>
         /// <param name="provider"></param>
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, Initializer initializer, IApiVersionDescriptionProvider provider)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, InitialDataService initialData, IApiVersionDescriptionProvider provider)
         {
             app.UseHsts();
             app.UseHttpsRedirection();
@@ -104,7 +105,7 @@ namespace AlzaWebApi
                     //c.InjectJavascript("https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js", "text/javascript");
                     //c.InjectJavascript("/documentation/documentation.js", "text/javascript");
                 });
-            initializer.SeedAsync().Wait();
+            initialData.SeedAsync().Wait();
         }
 
         #endregion
