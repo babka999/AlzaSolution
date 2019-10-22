@@ -1,7 +1,7 @@
 ﻿using Alza.Data.Domain.Catalog;
+using Alza.Data.Domain.Media;
 using Alza.Services.Catalog;
-using Alza.Services.Media;
-using System.Threading.Tasks;
+using System;
 
 namespace Alza.Services.InitialData
 {
@@ -10,27 +10,32 @@ namespace Alza.Services.InitialData
     /// </summary>
     public class InitialDataService
     {
+        #region Const
+
+        private const int MIN = 100;
+        private const int MAX = 30000;
+
+        #endregion
+
         #region Fields
 
+        private static readonly Random random = new Random();
         private readonly IProductService _productService;
-        private readonly ICategoryService _categoryService;
-        private readonly IManufacturerService _manufacturerService;
-        private readonly IPictureService _pictureService;
 
         #endregion
 
         #region Ctor
 
-        public InitialDataService(IProductService productService,
-            ICategoryService categoryService,
-            IManufacturerService manufacturerService,
-            IPictureService pictureService)
+        public InitialDataService(IProductService productService)
         {
-            _categoryService = categoryService;
-            _manufacturerService = manufacturerService;
-            _pictureService = pictureService;
             _productService = productService;
         }
+
+        #endregion
+
+        #region Properties
+
+        private static decimal RandomDecimal => (decimal)(MIN + (random.NextDouble() * (MAX - MIN)));
 
         #endregion
 
@@ -40,11 +45,41 @@ namespace Alza.Services.InitialData
         /// Set basic data in database at first run.
         /// </summary>
         /// <returns></returns>
-        public async Task SeedAsync()
+        public void Seed()
         {
-            var aaa = 1;
-            var bum = _categoryService.Any();
-            var bbb = 1;
+            if (!_productService.AnyProduct())
+            {
+                for (int i = 1; i <= 5; i++)
+                {
+                    ProductDataModel product = _productService.AddProduct(new ProductDataModel
+                    {
+                        Name = $"Produkt {i}",
+                        Description = $"Popis produktu {i}",
+                        Price = RandomDecimal,
+                        Manufacturer = new ManufacturerDataModel
+                        {
+                            Name = $"Výrobce {i}",
+                            Description = $"Popis výrobce {i}"
+                        },
+                        Picture = new PictureDataModel
+                        {
+                            AltAttribute = $"Obrázek {i}",
+                            TitleAttribute = $"Obrázek {i}",
+                            MimeType = "image/jpeg",
+                            PictureBinary = new PictureBinaryDataModel()
+                        }
+                    });
+                    _productService.AddProductCategory(new ProductCategoryDataModel
+                    {
+                        ProductId = product.Id,
+                        Category = new CategoryDataModel
+                        {
+                            Name = $"Kategorie {i}",
+                            Description = $"Popis ketegorie {i}"
+                        }
+                    });
+                }
+            }
         }
 
         #endregion

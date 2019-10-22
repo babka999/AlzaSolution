@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Alza.Data
 {
+    /// <summary>
+    /// Db context
+    /// </summary>
     public partial class ApplicationDbContext : DbContext, IDbContext
     {
         #region Ctor

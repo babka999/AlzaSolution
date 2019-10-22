@@ -3,6 +3,7 @@ using Alza.Services;
 using Alza.Services.Catalog;
 using Alza.Services.InitialData;
 using Alza.Services.Media;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AlzaWebApi
@@ -28,10 +29,14 @@ namespace AlzaWebApi
 
             services.AddScoped<IDbContext, ApplicationDbContext>();
             services.AddScoped<ICommonService, CommonService>();
-            services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<IManufacturerService, ManufacturerService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IPictureService, PictureService>();
+
+            #endregion
+
+            #region Singleton
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             #endregion
         }

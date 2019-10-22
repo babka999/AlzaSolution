@@ -1,6 +1,4 @@
 ﻿using Alza.Data;
-using Alza.Data.InitialData;
-using Alza.Services;
 using Alza.Services.InitialData;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +10,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.PlatformAbstractions;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System;
 using System.IO;
 using System.Reflection;
 
@@ -86,7 +83,7 @@ namespace AlzaWebApi
         /// </summary>
         /// <param name="app"></param>
         /// <param name="env"></param>
-        /// <param name="initializer"></param>
+        /// <param name="initialData"></param>
         /// <param name="provider"></param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, InitialDataService initialData, IApiVersionDescriptionProvider provider)
         {
@@ -105,7 +102,7 @@ namespace AlzaWebApi
                     //c.InjectJavascript("https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js", "text/javascript");
                     //c.InjectJavascript("/documentation/documentation.js", "text/javascript");
                 });
-            initialData.SeedAsync().Wait();
+            initialData.Seed();
         }
 
         #endregion
