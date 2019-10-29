@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
 
 namespace Alza.Services.Media
 {
@@ -20,6 +19,11 @@ namespace Alza.Services.Media
 
         #region Ctor
 
+        public PictureService()
+        {
+            _httpContext = null;
+        }
+
         public PictureService(IHttpContextAccessor httpContextAccessor)
         {
             _httpContext = httpContextAccessor.HttpContext;
@@ -34,7 +38,7 @@ namespace Alza.Services.Media
         /// </summary>
         /// <param name="pictureId"></param>
         /// <returns></returns>
-        public string GetPictureUri(int pictureId) => $"{(_httpContext.Request.IsHttps ? "https://" : "http://")}{_httpContext.Request.Host.Value}{PICTURE_RELATIVE_PATH}{pictureId}";
+        public string GetPictureUri(int pictureId) => _httpContext == null ? "" : $"{(_httpContext.Request.IsHttps ? "https://" : "http://")}{_httpContext.Request.Host.Value}{PICTURE_RELATIVE_PATH}{pictureId}";
 
         #endregion
     }

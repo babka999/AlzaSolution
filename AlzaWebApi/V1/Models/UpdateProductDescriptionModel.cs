@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AlzaWebApi.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace AlzaWebApi.V1.Models
 {
     /// <summary>
     /// Update product model
     /// </summary>
-    public class UpdateProductModel
+    public class UpdateProductModel : BaseModel
     {
         /// <summary>
         /// Description

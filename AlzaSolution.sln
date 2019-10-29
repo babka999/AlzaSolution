@@ -11,6 +11,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alza.Data", "Libraries\Alza
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alza.Services", "Libraries\Alza.Service\Alza.Services.csproj", "{C3AB1FB1-4FC6-43AC-9FB9-F3D1F17FE32E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EF82A49F-1F58-4EA7-887C-BE60FAD9A3F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.Extensions", "Libraries\Alza.Extensions\Alza.Extensions.csproj", "{68B85515-08DC-4897-8DE9-F2E76041412D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.Test.Extensions", "Tests\Alza.Test.Extensions\Alza.Test.Extensions.csproj", "{6ACCAF00-8AD9-4660-8EF0-E503E82B78A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlzaWebApi.Tests", "Tests\AlzaWebApi.Tests\AlzaWebApi.Tests.csproj", "{547E493E-F5E5-4D19-8D72-6863952DA87F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +37,18 @@ Global
 		{C3AB1FB1-4FC6-43AC-9FB9-F3D1F17FE32E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3AB1FB1-4FC6-43AC-9FB9-F3D1F17FE32E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3AB1FB1-4FC6-43AC-9FB9-F3D1F17FE32E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68B85515-08DC-4897-8DE9-F2E76041412D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68B85515-08DC-4897-8DE9-F2E76041412D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68B85515-08DC-4897-8DE9-F2E76041412D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68B85515-08DC-4897-8DE9-F2E76041412D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ACCAF00-8AD9-4660-8EF0-E503E82B78A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ACCAF00-8AD9-4660-8EF0-E503E82B78A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ACCAF00-8AD9-4660-8EF0-E503E82B78A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ACCAF00-8AD9-4660-8EF0-E503E82B78A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{547E493E-F5E5-4D19-8D72-6863952DA87F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{547E493E-F5E5-4D19-8D72-6863952DA87F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{547E493E-F5E5-4D19-8D72-6863952DA87F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{547E493E-F5E5-4D19-8D72-6863952DA87F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +56,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{49913BA8-3646-4148-A220-5CC4AE344C05} = {EC2A563B-1A9F-4090-9E5A-537C8B293017}
 		{C3AB1FB1-4FC6-43AC-9FB9-F3D1F17FE32E} = {EC2A563B-1A9F-4090-9E5A-537C8B293017}
+		{68B85515-08DC-4897-8DE9-F2E76041412D} = {EC2A563B-1A9F-4090-9E5A-537C8B293017}
+		{6ACCAF00-8AD9-4660-8EF0-E503E82B78A9} = {EF82A49F-1F58-4EA7-887C-BE60FAD9A3F2}
+		{547E493E-F5E5-4D19-8D72-6863952DA87F} = {EF82A49F-1F58-4EA7-887C-BE60FAD9A3F2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B01F039B-A858-486E-8A4B-600C785803BD}

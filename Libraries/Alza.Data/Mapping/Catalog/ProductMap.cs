@@ -1,5 +1,5 @@
 ﻿using Alza.Data.Domain.Catalog;
-using Alza.Data.Extension;
+using Alza.Extensions.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

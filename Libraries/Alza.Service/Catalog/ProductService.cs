@@ -1,4 +1,6 @@
-﻿using Alza.Data.Domain.Catalog;
+﻿using Alza.Data;
+using Alza.Data.Domain.Catalog;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
 namespace Alza.Services.Catalog
@@ -19,6 +21,12 @@ namespace Alza.Services.Catalog
         public ProductService(ICommonService commonService)
         {
             _commonService = commonService;
+        }
+
+        public ProductService(string connectionString)
+        {
+            DbContextOptionsBuilder<ApplicationDbContext> optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>().UseSqlServer(connectionString);
+            _commonService = new CommonService(new ApplicationDbContext(optionsBuilder.Options));
         }
 
         #endregion

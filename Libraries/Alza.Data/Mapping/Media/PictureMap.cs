@@ -1,5 +1,5 @@
 ﻿using Alza.Data.Domain.Media;
-using Alza.Data.Extension;
+using Alza.Extensions.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

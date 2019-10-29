@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Alza.Data.Extension
+namespace Alza.Extensions.Data
 {
     /// <summary>
     /// Model builder extension

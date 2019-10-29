@@ -4,7 +4,6 @@ using Alza.Services.Media;
 using AlzaWebApi.Models;
 using AlzaWebApi.V1.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -64,11 +63,12 @@ namespace AlzaWebApi.V1.Controllers
         /// <summary>
         /// Product by id.
         /// </summary>
+        /// <param name="id">Product id</param>
         /// <returns></returns>
         [MapToApiVersion("1.0")]
         [HttpGet]
         [ProducesResponseType(typeof(ProductModel), 200)]
-        [ProducesResponseType(typeof(ErrorModel), 400)]
+        [ProducesResponseType(typeof(ErrorModel), 404)]
         [Route("{id}")]
         public ActionResult ProductById(int id)
         {
@@ -81,27 +81,32 @@ namespace AlzaWebApi.V1.Controllers
                     Price = p.Price,
                     ImgUri = _pictureService.GetPictureUri(p.Id)
                 });
-            return BadRequest(ErrorModel.GetErrorModel("Bad request.", "Id does not exist.", HttpStatusCode.BadRequest));
+            return NotFound(ErrorModel.GetErrorModel("Not found.", "Id does not exist.", HttpStatusCode.NotFound));
         }
 
         /// <summary>
         /// Update product description.
         /// </summary>
+        /// <param name="id">Product id</param>
+        /// <param name="model">Update model</param>
         /// <returns></returns>
         [MapToApiVersion("1.0")]
         [HttpPut]
         [ProducesResponseType(200)]
         [ProducesResponseType(typeof(ErrorModel), 400)]
+        [ProducesResponseType(typeof(ErrorModel), 404)]
         [Route("{id}")]
         public ActionResult UpdataProductDescription(int id, UpdateProductModel model)
         {
+            if(!model.IsValid())
+                return BadRequest(ErrorModel.GetErrorModel("Bad request.", "Model is not valid.", HttpStatusCode.BadRequest));
             if (_productService.ProductByKey(id) is ProductDataModel p)
             {
                 p.Description = model.Description;
                 _productService.UpdateProduct(p);
                 return Ok();
             }  
-            return BadRequest(ErrorModel.GetErrorModel("Bad request.", "Id does not exist.",HttpStatusCode.BadRequest));
+            return NotFound(ErrorModel.GetErrorModel("Not found.", "Id does not exist.", HttpStatusCode.NotFound));
         }
 
         #endregion
