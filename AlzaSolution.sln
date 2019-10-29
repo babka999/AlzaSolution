@@ -13,11 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alza.Services", "Libraries\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EF82A49F-1F58-4EA7-887C-BE60FAD9A3F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.Extensions", "Libraries\Alza.Extensions\Alza.Extensions.csproj", "{68B85515-08DC-4897-8DE9-F2E76041412D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alza.Extensions", "Libraries\Alza.Extensions\Alza.Extensions.csproj", "{68B85515-08DC-4897-8DE9-F2E76041412D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.Test.Extensions", "Tests\Alza.Test.Extensions\Alza.Test.Extensions.csproj", "{6ACCAF00-8AD9-4660-8EF0-E503E82B78A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alza.Test.Extensions", "Tests\Alza.Test.Extensions\Alza.Test.Extensions.csproj", "{6ACCAF00-8AD9-4660-8EF0-E503E82B78A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlzaWebApi.Tests", "Tests\AlzaWebApi.Tests\AlzaWebApi.Tests.csproj", "{547E493E-F5E5-4D19-8D72-6863952DA87F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlzaWebApi.Tests", "Tests\AlzaWebApi.Tests\AlzaWebApi.Tests.csproj", "{547E493E-F5E5-4D19-8D72-6863952DA87F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
