@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Collections.Generic;
 
 namespace AlzaWebApi
 {
@@ -25,7 +26,10 @@ namespace AlzaWebApi
         /// Initializes a new instance of the <see cref="SwaggerConfigure"/> class.
         /// </summary>
         /// <param name="provider">The <see cref="IApiVersionDescriptionProvider">provider</see> used to generate Swagger documents.</param>
-        public SwaggerConfigure(IApiVersionDescriptionProvider provider) => _provider = provider;
+        public SwaggerConfigure(IApiVersionDescriptionProvider provider) 
+        {
+            _provider = provider;
+        }
 
         #endregion
 
@@ -35,18 +39,30 @@ namespace AlzaWebApi
         public void Configure(SwaggerGenOptions options)
         {
             foreach (var description in _provider.ApiVersionDescriptions)
-                options.SwaggerDoc(description.GroupName, CreateInfoForApiVersion(description));
+                options.SwaggerDoc(description.GroupName, CreateInfoForApiVersion(description.ApiVersion.ToString()));
         }
 
         #endregion
 
         #region Private methods
 
-        private Info CreateInfoForApiVersion(ApiVersionDescription description)
+        private Info CreateInfoForApiVersion(string version) 
             => new Info()
             {
                 Title = "Alza API",
-                Version = description.ApiVersion.ToString()
+                Version = version,
+                Description = ApiVersions.ContainsKey(version) ? ApiVersions[version] : ""
+            };
+
+        #endregion
+
+        #region ApiVersions description
+
+        private Dictionary<string, string> ApiVersions
+            => new Dictionary<string, string>
+            {
+                { "1.0", "Api v1. All methods are only synchronous." },
+                { "2.0", "Api v2. All methods are asynchronous." }
             };
 
         #endregion

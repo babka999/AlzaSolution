@@ -3,19 +3,20 @@ using Alza.Extensions.Model;
 using Alza.Services.Catalog;
 using Alza.Services.Media;
 using AlzaWebApi.Models;
-using AlzaWebApi.V1.Models;
+using AlzaWebApi.V2.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 
-namespace AlzaWebApi.V1.Controllers
+namespace AlzaWebApi.V2.Controllers
 {
     /// <summary>
-    /// Product controler v 1.0
+    /// Product controler v 2.0
     /// </summary>
     [ApiController]
-    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     [Route("v{version:apiVersion}/[controller]")]
     [Consumes("application/json")]
     [Produces("application/json")]
@@ -48,11 +49,11 @@ namespace AlzaWebApi.V1.Controllers
         /// List of available products.
         /// </summary>
         /// <returns></returns>
-        [MapToApiVersion("1.0")]
+        [MapToApiVersion("2.0")]
         [HttpGet]
         [ProducesResponseType(typeof(HashSet<ProductModel>), 200)]
-        public ActionResult AllProducts()
-            => Ok(_productService.AllProducts().Select(x => new ProductModel
+        public async Task<ActionResult> AllProducts()
+            => Ok((await _productService.AllProductsAsync()).Select(x => new ProductModel
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -66,14 +67,14 @@ namespace AlzaWebApi.V1.Controllers
         /// </summary>
         /// <param name="id">Product id</param>
         /// <returns></returns>
-        [MapToApiVersion("1.0")]
+        [MapToApiVersion("2.0")]
         [HttpGet]
         [ProducesResponseType(typeof(ProductModel), 200)]
         [ProducesResponseType(typeof(ErrorModel), 404)]
         [Route("{id}")]
-        public ActionResult ProductById(int id)
+        public async Task<ActionResult> ProductById(int id)
         {
-            if (_productService.ProductByKey(id) is ProductDataModel p)
+            if (await _productService.ProductByKeyAsync(id) is ProductDataModel p)
                 return Ok(new ProductModel
                 {
                     Id = p.Id,
@@ -91,22 +92,22 @@ namespace AlzaWebApi.V1.Controllers
         /// <param name="id">Product id</param>
         /// <param name="model">Update model</param>
         /// <returns></returns>
-        [MapToApiVersion("1.0")]
+        [MapToApiVersion("2.0")]
         [HttpPut]
         [ProducesResponseType(200)]
         [ProducesResponseType(typeof(ErrorModel), 400)]
         [ProducesResponseType(typeof(ErrorModel), 404)]
         [Route("{id}")]
-        public ActionResult UpdataProductDescription(int id, UpdateProductModel model)
+        public async Task<ActionResult> UpdataProductDescription(int id, UpdateProductModel model)
         {
-            if(!model.IsValid())
+            if (!model.IsValid())
                 return BadRequest(ErrorModel.GetErrorModel(model.GetValidationResults()));
-            if (_productService.ProductByKey(id) is ProductDataModel p)
+            if (await _productService.ProductByKeyAsync(id) is ProductDataModel p)
             {
                 p.Description = model.Description;
-                _productService.UpdateProduct(p);
+                await _productService.UpdateProductAsync(p);
                 return Ok();
-            }  
+            }
             return NotFound(ErrorModel.GetErrorModel("Not found.", "Id", "Id does not exist.", HttpStatusCode.NotFound));
         }
 

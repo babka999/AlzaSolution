@@ -1,7 +1,7 @@
 ﻿using Alza.Extensions.Model;
 using System.ComponentModel.DataAnnotations;
 
-namespace AlzaWebApi.V1.Models
+namespace AlzaWebApi.V2.Models
 {
     /// <summary>
     /// Update product model
@@ -11,7 +11,7 @@ namespace AlzaWebApi.V1.Models
         /// <summary>
         /// Description
         /// </summary>
-        [MaxLength(500)]
+        [MaxLength(100)]
         public string Description { get; set; }
     }
 }

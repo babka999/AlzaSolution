@@ -1,7 +1,9 @@
 ﻿using Alza.Data;
 using Alza.Data.Domain.Catalog;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Alza.Services.Catalog
 {
@@ -77,6 +79,57 @@ namespace Alza.Services.Catalog
         /// <param name="model"></param>
         /// <returns></returns>
         public virtual ProductCategoryDataModel AddProductCategory(ProductCategoryDataModel model) => _commonService.Add(model);
+
+        #endregion
+
+        #endregion
+
+        #region Async public methods
+
+        #region Product
+
+        /// <summary>
+        /// Add product async
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async virtual Task<EntityEntry<ProductDataModel>> AddProductAsync(ProductDataModel model) => await _commonService.AddAsync(model);
+
+        /// <summary>
+        /// Has product async
+        /// </summary>
+        /// <returns></returns>
+        public async virtual Task<bool> AnyProductAsync() => await _commonService.AnyAsync<ProductDataModel>();
+
+        /// <summary>
+        /// Update product async
+        /// </summary>
+        /// <param name="model"></param>
+        public async virtual Task UpdateProductAsync(ProductDataModel model) => await _commonService.UpdateAsync(model);
+
+        /// <summary>
+        /// All products async
+        /// </summary>
+        /// <returns></returns>
+        public async virtual Task<List<ProductDataModel>> AllProductsAsync() => await _commonService.GetAllAsync<ProductDataModel>();
+
+        /// <summary>
+        /// Product by id async
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async virtual Task<ProductDataModel> ProductByKeyAsync(int id) => await _commonService.GetByKeyAsync<ProductDataModel>(typeof(ProductDataModel), id);
+
+        #endregion
+
+        #region Product category
+
+        /// <summary>
+        /// Add product category async
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async virtual Task<EntityEntry<ProductCategoryDataModel>> AddProductCategoryAsync(ProductCategoryDataModel model) => await _commonService.AddAsync(model);
 
         #endregion
 

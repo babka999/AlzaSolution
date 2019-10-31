@@ -20,13 +20,6 @@ namespace AlzaWebApi
     /// </summary>
     public class Startup
     {
-        #region Fields
-
-        private static string _apiVersion = "";
-        private readonly string[] _xmlCommentsFilename = { "DenisaAPI.xml", "Denisa.ApiModels.xml" };
-
-        #endregion
-
         #region Ctor
 
         /// <summary>
@@ -102,7 +95,7 @@ namespace AlzaWebApi
                     //c.InjectJavascript("https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js", "text/javascript");
                     //c.InjectJavascript("/documentation/documentation.js", "text/javascript");
                 });
-            initialData.Seed();
+            initialData.Seed().Wait();
         }
 
         #endregion

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Net;
 
 namespace AlzaWebApi.Models
@@ -14,13 +16,13 @@ namespace AlzaWebApi.Models
         /// </summary>
         public ErrorModel()
         {
-            Errors = new ErrorDetailModel();
+            Errors = new Dictionary<string, HashSet<string>>();
         }
 
         /// <summary>
-        /// Errors
+        /// Properties errors
         /// </summary>
-        public ErrorDetailModel Errors { get; set; }
+        public Dictionary<string,HashSet<string>> Errors { get; set; }
 
         /// <summary>
         /// Title
@@ -41,35 +43,44 @@ namespace AlzaWebApi.Models
         /// Generate error model
         /// </summary>
         /// <returns></returns>
-        public static ErrorModel GetErrorModel(string title, string description, HttpStatusCode status)
+        public static ErrorModel GetErrorModel(string title, string propertyName, string propertyError, HttpStatusCode status)
             => new ErrorModel
             {
-                Errors = new ErrorDetailModel
-                {
-                    Description = new List<string> { description }
+                Errors = new Dictionary<string, HashSet<string>> { 
+                    { propertyName, new HashSet<string> { propertyError } } 
                 },
                 Status = (int)status,
                 Title = title,
                 TraceId = Guid.NewGuid()
             };
-    }
 
-    /// <summary>
-    /// Error detail model
-    /// </summary>
-    public class ErrorDetailModel
-    {
         /// <summary>
-        /// Ctor
+        /// Generate error model
         /// </summary>
-        public ErrorDetailModel()
+        /// <param name="title"></param>
+        /// <param name="validationResults"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public static ErrorModel GetErrorModel(string title, List<ValidationResult> validationResults, HttpStatusCode status)
         {
-            Description = new List<string>();
+            Dictionary<string, HashSet<string>> propertyErrors = new Dictionary<string, HashSet<string>>();
+            foreach (string propertyName in validationResults.Select(x => x.MemberNames.First()).GroupBy(x => x).Select(x => x.Key))
+                propertyErrors.Add(propertyName, new HashSet<string>(validationResults.Where(x => x.MemberNames.First() == propertyName).Select(x => x.ErrorMessage).ToList()));
+            return new ErrorModel
+            {
+                Errors = propertyErrors,
+                Status = (int)status,
+                Title = title,
+                TraceId = Guid.NewGuid()
+            }; ;
         }
-        /// <summary>
-        /// Description
-        /// </summary>
-        public List<string> Description { get; set; }
 
+        /// <summary>
+        /// Generate error model
+        /// </summary>
+        /// <param name="validationResults"></param>
+        /// <returns></returns>
+        public static ErrorModel GetErrorModel(List<ValidationResult> validationResults) =>
+            GetErrorModel("Bad request.", validationResults, HttpStatusCode.BadRequest);
     }
 }

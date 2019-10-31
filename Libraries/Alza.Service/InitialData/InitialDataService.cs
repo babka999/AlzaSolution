@@ -1,7 +1,9 @@
 ﻿using Alza.Data.Domain.Catalog;
 using Alza.Data.Domain.Media;
 using Alza.Services.Catalog;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
+using System.Threading.Tasks;
 
 namespace Alza.Services.InitialData
 {
@@ -42,16 +44,16 @@ namespace Alza.Services.InitialData
         #region Public methods
 
         /// <summary>
-        /// Set basic data in database at first run.
+        /// Set async basic data in database at first run.
         /// </summary>
         /// <returns></returns>
-        public void Seed()
+        public async Task Seed()
         {
-            if (!_productService.AnyProduct())
+            if (!await _productService.AnyProductAsync())
             {
                 for (int i = 1; i <= 5; i++)
                 {
-                    ProductDataModel product = _productService.AddProduct(new ProductDataModel
+                    EntityEntry<ProductDataModel> product = await _productService.AddProductAsync(new ProductDataModel
                     {
                         Name = $"Produkt {i}",
                         Description = $"Popis produktu {i}",
@@ -69,9 +71,9 @@ namespace Alza.Services.InitialData
                             PictureBinary = new PictureBinaryDataModel()
                         }
                     });
-                    _productService.AddProductCategory(new ProductCategoryDataModel
+                    await _productService.AddProductCategoryAsync(new ProductCategoryDataModel
                     {
-                        ProductId = product.Id,
+                        ProductId = product.Entity.Id,
                         Category = new CategoryDataModel
                         {
                             Name = $"Kategorie {i}",

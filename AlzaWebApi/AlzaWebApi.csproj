@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <Version>2.0.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -22,11 +25,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Libraries\Alza.Data\Alza.Data.csproj" />
     <ProjectReference Include="..\Libraries\Alza.Service\Alza.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="V2\Models\" />
-    <Folder Include="V2\Controllers\" />
   </ItemGroup>
 
 </Project>

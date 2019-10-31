@@ -2,8 +2,8 @@
 using Alza.Data.Domain.Media;
 using Alza.Data.Mapping.Catalog;
 using Alza.Data.Mapping.Media;
-using Microsoft.EntityFrameworkCore;
 using Alza.Extensions.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Alza.Data
 {
