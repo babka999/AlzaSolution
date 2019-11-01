@@ -1,0 +1,63 @@
+THE PROJECT GOAL
+	- To create service providing all available products of the eshop and enabling the partial update of one product
+	- To create swagger docs for products endpoints
+	- To create unit test covering the products endpoints functionality
+
+Source Code and Version Control
+	- Use GitHub, Bitbucket, GitLab, VSTS (or any other alternative) as your remote repository
+	- Use Git as a version control system
+	- Continue pushing your changes to repo while working on your project
+
+Preferred IDE’S
+	- Visual Studio – e.g. free Visual Studio Community at https://www.visualstudio.com/cs/downloads/
+	- Visual Studio Code https://code.visualstudio.com/
+
+INITIALIZING THE PROJECT
+	- Create new .NET CORE (2.x) WebApi application
+		- Using either IDE or running  dotnet new webapi
+
+OBJECTS
+	- Product – contains the information about Id (required), Name (required), ImgUri (required) and Price (required, in decimal), Description (optional)
+	- Other objects you need
+DATA
+	- Prepare mock of products Data - you can use this MOCK in UnitTests
+	- Prepare simple SQL database where you have to store products Data (MSSQL prefered)
+		- Do not forget to initial seed
+		- feel free to use any ORM
+	- Don’t forget to use layered architecture though
+		- Use S.O.L.I.D. principles
+		- Easy switch between MOCK and DB data
+
+ENDPOINTS
+	- Endpoint to retrieve list of available products
+	- Endpoint to retrieve one product by id
+	- Endpoint to update product description
+
+ENDPOINT VERSIONING
+	- Use url path segment versioning
+	- Make it work with Swashbuckle documentation
+
+RUNNING THE PROJECT
+	- Make sure your application runs – via dotnet command dotnet run, or using your IDE
+	- Make sure your endpoints work
+
+DOCUMENTATION
+	- Use Swashbuckle framework to document your Web API - https://github.com/domaindrivendev/Swashbuckle
+	- Documentation should be seen after running the app and navigating to /swagger
+	- You should document:
+		- Responses – response models and status codes
+		- Request parameters
+		- Optional/Required Parameters
+		- Endpoints versions
+
+UNIT TESTS
+	- Create unit test project
+	- Create suite of automated tests for endpoints you prepared
+
+README FILE
+	- Write information about your application to readme file
+	- Provide prerequisites to run the app and steps how to start the app
+	- Provide  how to run the unit tests
+
+LAST STEP
+	- Provide us with a link on your repo with source code and all commit history
